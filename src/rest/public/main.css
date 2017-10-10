@@ -1,0 +1,38 @@
+.InsightInput {
+	width:30%;
+}
+
+.InsightLabel {
+	width:20%;
+	padding-right: 15px;
+}
+
+.InsightSubmitButton {
+	padding-top: 10px;
+}
+
+.InsightAdvancedDeptOptions {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.InsightSizeInput {
+	width: 70%;
+}
+
+.InsightRoomsBuildingInput {
+	padding-top: 10px;
+}
+
+.InsightCoursesTable {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.InsightScheduleInput {
+	padding-right: 10px;
+}
+
+.InsightScheduleInputLeft {
+	padding-left: 10px;
+}

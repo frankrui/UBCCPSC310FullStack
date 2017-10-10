@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<head>
+    <script src="/public/jQuery/jquery-3.2.0.min.js"></script>
+    <script src="/public/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/public/jQuery/jquery.canvasjs.min.js"></script>
+    <link rel="stylesheet" href="/public/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/public/SweetAlert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/SweetAlert/dist/sweetalert.css">
+    <script src="/public/main.js"></script>
+    <link rel="stylesheet" href="/public/main.css">
+</head>
+<html>
+    <body>
+        <div class="container">
+            <h3>InsightUBC</h3>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#courses">Courses</a></li>
+                <li><a data-toggle="tab" href="#rooms">Rooms</a></li>
+                <li><a data-toggle="tab" href="#scheduler">Scheduler</a></li>
+                <li><a data-toggle="tab" href="#novelty">Novelty Feature</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="courses" class="tab-pane fade in active">
+                    <h3>Filter By:</h3>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input id="dept_checkbox" type="checkbox" value="">Department</label>
+                        <input type="text" class="InsightInput" id="dept_input">
+                    </div>
+                    <div>
+                        <button id="advanced_button" type="button" class="btn btn-link" data-toggle="collapse" data-target="#options">Advanced Options</button>
+                        <div id="options" class="collapse InsightAdvancedDeptOptions">
+                            <label>Order By:</label>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="most failing" id="most_failing_checkbox">most failing</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="most passing" id="most_passing_checkbox">most passing</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="average grade" id="average_grade_checkbox">average grade</label>
+                            </div>
+                            <div>
+                                <label id="order"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input type="checkbox" value="" id="course_number_checkbox">Course Number</label>
+                        <input type="text" class="InsightInput" id="course_number_input">
+                    </div>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input type="checkbox" value="" id="instructor_checkbox">Instructor</label>
+                        <input type="text" class="InsightInput" id="instructor_input">
+                    </div>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input type="checkbox" value="" id="title_checkbox">Course Title</label>
+                        <input type="text" class="InsightInput" id="title_input">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label class="InsightLabel"><input type="checkbox" value="" id="size_checkbox">Size</label>
+                                <input type="text" class="InsightSizeInput" id="size_input">
+                            </div>
+                        </div>
+                        <div class="col-sm-8 InsightSubmitButton">
+                            <label class="radio-inline"><input type="radio" name="optradio" id="gt_courses">GT</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" id="lt_courses">LT</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" id="eq_courses">EQ</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Select Logic Operator: </label>
+                        <label class="radio-inline"><input type="radio" name="optradio1" id="and_courses">AND</label>
+                        <label class="radio-inline"><input type="radio" name="optradio1" id="or_courses">OR</label>
+                    </div>
+                    <div class="InsightSubmitButton">
+                        <button id="courses_submit_button" type="button" class="btn btn-info">Submit</button>
+                    </div>
+                    <div class="InsightCoursesTable">
+                        <table id="courses_table" class="display" width="100%"></table>
+                    </div>
+                </div>
+                <!--Begin rooms tab-->
+                <div id="rooms" class="tab-pane fade">
+                    <h3>Filter By:</h3>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input type="checkbox" value="" id="room_number_checkbox">Room Number</label>
+                        <input type="text" class="InsightInput" id="room_number_input">
+                    </div>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input type="checkbox" value="" id="building_checkbox">Building</label>
+                        <input type="text" class="InsightInput" id="building_input">
+                    </div>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input type="checkbox" value="" id="furniture_checkbox">Furniture</label>
+                        <input type="text" class="InsightInput" id="furniture_input">
+                    </div>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input type="checkbox" value="" id="type_checkbox">Type</label>
+                        <input type="text" class="InsightInput" id="type_input">
+                    </div>
+                    <div class="checkbox">
+                        <label class="InsightLabel"><input type="checkbox" value="" id="seats_checkbox">Size</label>
+                        <input type="text" class="InsightInput" id="seats_input">
+                    </div>
+                    <div>
+                        <label>Select Logic Operator: </label>
+                        <label class="radio-inline"><input type="radio" name="optradio3" id="and_rooms">AND</label>
+                        <label class="radio-inline"><input type="radio" name="optradio3" id="or_rooms">OR</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label class="InsightLabel"><input type="checkbox" value="" id="within_checkbox">Within</label>
+                                <input type="text" class="InsightInput" id="meters_input">
+                                <label>meters of building</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 InsightRoomsBuildingInput">
+                            <input type="text" class="InsightInput" id="within_building_input">
+                        </div>
+                    </div>
+                    <div class="InsightSubmitButton">
+                        <button id="rooms_submit_button" type="button" class="btn btn-info">Submit</button>
+                    </div>
+                    <div class="InsightCoursesTable">
+                        <table id="rooms_table" class="display" width="100%"></table>
+                    </div>
+                </div>
+                <!--Begin scheduler tab-->
+                <div id="scheduler" class="tab-pane fade">
+                    <h3>Scheduler</h3>
+                    <div>
+                        <label class="InsightScheduleInput">Enter your courses: Dept</label>
+                        <input type="text" id="schedule_dept_input">
+                        <label class="radio-inline"><input type="radio" name="optradio4" id="and_schedule_courses">AND</label>
+                        <label class="radio-inline"><input type="radio" name="optradio4" id="or_schedule_courses">OR</label>
+                        <label class="InsightScheduleInput InsightScheduleInputLeft">Number</label>
+                        <input type="text" id="schedule_number_input">
+                    </div>
+                    <div class="InsightSubmitButton">
+                        <label class="InsightScheduleInput">Enter your rooms: Building</label>
+                        <input type="text" id="schedule_building_input" style="width:100px;">
+                        <label class="radio-inline"><input type="radio" name="optradio5" id="and_schedule_rooms">AND</label>
+                        <label class="radio-inline"><input type="radio" name="optradio5" id="or_schedule_rooms">OR</label>
+                        <label class="InsightScheduleInput InsightScheduleInputLeft">Within</label>
+                        <input type="text" id="schedule_meters_input" style="width:100px;">
+                        <label class="InsightScheduleInput">meters of building</label>
+                        <input type="text" id="schedule_building_within_input" style="width:100px;">
+                    </div>
+                    <div class="InsightSubmitButton">
+                        <button id="schedule_submit_button" type="button" class="btn btn-info">Make Schedule</button>
+                    </div>
+                    <div class="InsightCoursesTable">
+                        <table id="scheduling_courses_table" width="100%"></table>
+                    </div>
+                    <div class="InsightCoursesTable">
+                        <label id="scheduling_quality_label" style="display: none;"></label>
+                    </div>
+                    <div class="InsightCoursesTable">
+                        <table id="scheduling_table" width="100%"></table>
+                    </div>
+                </div>
+                <div id="novelty" class="tab-pane fade">
+                    <h3>Novelty Feature: Generate Chart</h3>
+                    <div>
+                        <label>Select y-axis: </label>
+                        <label class="radio-inline"><input type="radio" name="y-axis" id="radioPass">Pass rate</label>
+                        <label class="radio-inline"><input type="radio" name="y-axis" id="radioFail">Fail rate</label>
+                        <label class="radio-inline"><input type="radio" name="y-axis" id="radioAvg">Average </label>
+                    </div>
+                    <div>
+                        <label>Select x-axis: </label>
+                        <label class="radio-inline"><input type="radio" name="x-axis" id="radioDept">Department</label>
+                        <label class="radio-inline"><input type="radio" name="x-axis" id="radioInstructor">Instructor</label>
+                        <label class="radio-inline"><input type="radio" name="x-axis" id="radioCourse">Course ID</label>
+                        <input type="text" class="InsightInput" id="courseKeyInput">
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-primary" id="clear_input_to_graph">clear</button>
+                        <button type="button" class="btn btn-primary" id="add_input_to_graph">Add to graph</button>
+                    </div>
+                    <div class="InsightCoursesTable">
+                        <div id="chartContainer" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
